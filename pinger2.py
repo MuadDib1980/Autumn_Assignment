@@ -59,9 +59,9 @@ def main(nspace):
 
     print(arg_)
 
-    if (arg_) == ['-l'] or ['--licence'] or ['--license']:
-        for a in text_.items():
-            print(f"{text_[a] : <{tl}}: {text_.get(a)}")
+    #if (arg_) == ['-l'] or ['--licence'] or ['--license']:
+    #    for a in text_.items():
+    #        print(f"{text_[a] : <{tl}}: {text_.get(a)}")
 
     # // Print program name //
     print(__doc__)
@@ -96,7 +96,7 @@ parser.add_argument(
 )
 parser.add_argument(
     "-v", "--version", help=f"{__program__} version information",
-    required=False, action='store_true'
+    required=False, action='version', version='1.0.0', 
 )
 parser.add_argument(
     "-i", "--IP", help="IP address list",
