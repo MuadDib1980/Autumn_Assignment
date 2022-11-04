@@ -19,10 +19,10 @@ import sys
 __author__ = "Alberto Oesterle"
 __copyright__ = "Copyright 2022, SETU / ITCarlow"
 __licence__ = "<LICENCED under GNU General Public License v3.0>"
-__version__ = "<1.0.0>"
+__version__ = "Version: 1.0.0"
 __program__ = sys.argv[0][2:] if (sys.argv[0][:2] == "./") else sys.argv[0]
 OTHER = "Autumn assignment - Alberto Oesterle for Declan Ó Briain, written \
-in Atom Version 1.60.0"
+in Visual Studio Code Version 1.72.2"
 
 # ============================================ #
 # //                Functions               // #
@@ -90,13 +90,15 @@ def main(nspace):
 parser = argparse.ArgumentParser(description=f"{__program__} Ip Address pinger \
 Program")
 
+#parser.version = __version__
+
 parser.add_argument(
     "-l", "--licence", help=f"{__program__} licence information",
     required=False, action='store_true'
 )
 parser.add_argument(
     "-v", "--version", help=f"{__program__} version information",
-    required=False, action='version', version='1.0.0', 
+    action='version', version=__version__
 )
 parser.add_argument(
     "-i", "--IP", help="IP address list",
