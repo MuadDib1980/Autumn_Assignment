@@ -53,15 +53,17 @@ def main(nspace):
 
     arg_ = sys.argv[1:]
 
-    text_ = {"Author": __author__, "Copyright": __copyright__, "License":\
-     __licence__}
-    tl = len(max(text_, key=len)) + 2
+    list_A = ["Author", "Copyright", "License"]
+    list_B = [__author__, __copyright__, __licence__]
 
-    print(arg_)
+    tl = len(max(list_A, key=len)) + 2
 
-    #if (arg_) == ['-l'] or ['--licence'] or ['--license']:
-    #    for a in text_.items():
-    #        print(f"{text_[a] : <{tl}}: {text_.get(a)}")
+    if (arg_) == ['-l'] or ['--licence'] or ['--license']:
+   
+        for a in range(0,3):
+           print(f"{list_A[a] : <{tl}}: {list_B[a]}")
+        
+        sys.exit(1)
 
     # // Print program name //
     print(__doc__)
@@ -90,8 +92,6 @@ def main(nspace):
 parser = argparse.ArgumentParser(description=f"{__program__} Ip Address pinger \
 Program")
 
-#parser.version = __version__
-
 parser.add_argument(
     "-l", "--licence", help=f"{__program__} licence information",
     required=False, action='store_true'
@@ -104,6 +104,10 @@ parser.add_argument(
     "-i", "--IP", help="IP address list",
     required=False, action='store_true'
 )
+parser.add_argument(
+    '--license', help=argparse.SUPPRESS, required=False, action='store_true'
+)
+
 
 # // Call main function (Pick minimum version if necessary) //
 if __name__ == "__main__":
