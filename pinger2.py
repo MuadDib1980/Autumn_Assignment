@@ -18,7 +18,7 @@ import sys
 
 __author__ = "Alberto Oesterle"
 __copyright__ = "Copyright 2022, SETU / ITCarlow"
-__licence__ = "<LICENCED under GNU General Public License v3.0>"
+__licence__ = "<European Union Public Licence v1.2>"
 __version__ = "Version: 1.0.0"
 __program__ = sys.argv[0][2:] if (sys.argv[0][:2] == "./") else sys.argv[0]
 OTHER = "Autumn assignment - Alberto Oesterle for Declan Ó Briain, written \
@@ -65,6 +65,10 @@ def main(nspace):
            print(f"{list_A[a] : <{tl}}: {list_B[a]}")
         
         sys.exit(1)
+
+    if arg_ == ['-i'] or ['--IP']:
+        print('\nIP Was entered')
+
 
     # // Print program name //
     print(__doc__)
