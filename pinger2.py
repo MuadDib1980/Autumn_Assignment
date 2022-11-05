@@ -53,12 +53,14 @@ def main(nspace):
 
     arg_ = sys.argv[1:]
 
+    print(arg_)
+
     list_A = ["Author", "Copyright", "License"]
     list_B = [__author__, __copyright__, __licence__]
 
     tl = len(max(list_A, key=len)) + 2
 
-    if (arg_) == ['-l'] or ['--licence'] or ['--license']:
+    if arg_ == ['-l'] or ['--licence'] or ['--license']:
         print("\n")
 
         for a in range(0,3):
@@ -66,7 +68,7 @@ def main(nspace):
         
         sys.exit(1)
 
-    if arg_ == ['-i'] or ['--IP']:
+    elif arg_ == ['-i'] or ['--IP']:
         print('\nIP Was entered')
 
 
