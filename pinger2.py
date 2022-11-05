@@ -59,7 +59,8 @@ def main(nspace):
     tl = len(max(list_A, key=len)) + 2
 
     if (arg_) == ['-l'] or ['--licence'] or ['--license']:
-   
+        print("\n")
+
         for a in range(0,3):
            print(f"{list_A[a] : <{tl}}: {list_B[a]}")
         
@@ -102,7 +103,7 @@ parser.add_argument(
 )
 parser.add_argument(
     "-i", "--IP", help="IP address list",
-    required=False, action='store_true'
+    required=False, action='append'
 )
 parser.add_argument(
     '--license', help=argparse.SUPPRESS, required=False, action='store_true'
