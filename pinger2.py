@@ -11,6 +11,8 @@ Autumn assignment - SETU cybersecurity - Programming I
 
 import argparse
 import sys
+import platform
+import subprocess as sp
 
 # ============================================ #
 # //      Global variable declarations      // #
@@ -51,26 +53,47 @@ def other(other_):
 def main(nspace):
     """main() function"""
 
-    arg_ = sys.argv[1:]
-
-    print(arg_)
-
     list_A = ["Author", "Copyright", "License"]
     list_B = [__author__, __copyright__, __licence__]
 
     tl = len(max(list_A, key=len)) + 2
 
-    if arg_ == ['-l'] or ['--licence'] or ['--license']:
+    if nspace.licence or nspace.license:
         print("\n")
 
         for a in range(0,3):
            print(f"{list_A[a] : <{tl}}: {list_B[a]}")
-        
+
+        print("\n")        
         sys.exit(1)
 
-    elif arg_ == ['-i'] or ['--IP']:
-        print('\nIP Was entered')
+    elif nspace.ip:
+        print(f'\nIP was entered {nspace.ip}')
 
+    else:
+        ip = input(f'Enter an IP address: ')
+        print(f'The entered IP is {ip}')
+
+        param = '-n' if platform.system().lower()=='windows' else '-c'
+        
+        command = ['ping', param, '1', ip]
+
+        ping_= sp.call(command)
+       
+        print(f'result is {ping_}')
+
+        #return sp.call(command) == 0
+       # if sp.call(command):
+       #     print(f'{ip} is alive')
+
+        sys.exit(1)
+
+
+def ping(ip_):
+
+    if nspace.ip:
+
+        sys.exit(1)
 
     # // Print program name //
     print(__doc__)
@@ -108,8 +131,8 @@ parser.add_argument(
     action='version', version=__version__
 )
 parser.add_argument(
-    "-i", "--IP", help="IP address list",
-    required=False, action='append'
+    "-i", "--ip", help="IP address list",
+    required=False, nargs='+'
 )
 parser.add_argument(
     '--license', help=argparse.SUPPRESS, required=False, action='store_true'
