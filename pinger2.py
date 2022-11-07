@@ -78,9 +78,13 @@ def main(nspace):
         
         command = ['ping', param, '1', ip]
 
-        ping_= sp.call(command)
+        ping_= sp.Popen(command, shell=True, stdout=sp.PIPE, stderr=sp.PIPE)
        
-        print(f'result is {ping_}')
+        out, err = res.communicate()
+	    out = out.rstrip()
+	    err = err.rstrip()
+        
+        print(f'result is {out}')
 
         #return sp.call(command) == 0
        # if sp.call(command):
