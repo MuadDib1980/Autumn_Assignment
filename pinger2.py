@@ -12,6 +12,7 @@ Autumn assignment - SETU cybersecurity - Programming I
 import argparse
 import sys
 import platform
+import os
 import subprocess as sp
 
 # ============================================ #
@@ -73,22 +74,15 @@ def main(nspace):
     else:
         ip = input(f'Enter an IP address: ')
         print(f'The entered IP is {ip}')
-
         param = '-n' if platform.system().lower()=='windows' else '-c'
-        
         command = ['ping', param, '1', ip]
+    
+        try:
+            ipresponse = sp.check_output(command, stderr=sp.STDOUT, universal_newlines=True)
+            print("IP ran")
+        except sp.CalledProcessError:
+            print("IP failed to ping")
 
-        ping_= sp.Popen(command, shell=True, stdout=sp.PIPE, stderr=sp.PIPE)
-       
-        out, err = res.communicate()
-	    out = out.rstrip()
-	    err = err.rstrip()
-        
-        print(f'result is {out}')
-
-        #return sp.call(command) == 0
-       # if sp.call(command):
-       #     print(f'{ip} is alive')
 
         sys.exit(1)
 
