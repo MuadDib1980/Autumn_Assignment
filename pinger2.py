@@ -12,8 +12,8 @@ Autumn assignment - SETU cybersecurity - Programming I
 import argparse
 import sys
 import platform
-import os
 import subprocess as sp
+import ipaddress
 
 # ============================================ #
 # //      Global variable declarations      // #
@@ -31,20 +31,24 @@ in Visual Studio Code Version 1.72.2"
 # //                Functions               // #
 # ============================================ #
 
+def ipchecker(ip_):
+    try:
+        ip_object = ipaddress.ip_address(ip_)
+        param = '-n' if platform.system().lower()=='windows' else '-c'
+        command = ['ping', param, '1', ip_]
+        try:
+            ipresponse = sp.check_output(command, stderr=sp.STDOUT, universal_newlines=True)
+            print(f'{ip_} is alive')
+
+        except sp.CalledProcessError:
+            print(f'{ip_} is unreachable')
+    except:
+        print(f'{ip_} - ERROR: is not a properly formatted address')
+
 # -------------------------------------------- #
 # //            other() Function            // #
 # -------------------------------------------- #
 
-
-def other(other_):
-    """<OTHER>() function"""
-
-def other(other_):
-    fun_name = "<OTHER>()"
-    return f"{fun_name}: {other_} STUFF HERE>"
-
-
-# End <OTHER>() function
 
 # -------------------------------------------- #
 # //            main() Function             // #
@@ -69,46 +73,15 @@ def main(nspace):
         sys.exit(1)
 
     elif nspace.ip:
-        print(f'\nIP was entered {nspace.ip}')
-
+        print("\n")
+        for x in nspace.ip:
+            ipchecker(x)
+            
     else:
-        ip = input(f'Enter an IP address: ')
-        print(f'The entered IP is {ip}')
-        param = '-n' if platform.system().lower()=='windows' else '-c'
-        command = ['ping', param, '1', ip]
+        x = input(f'Enter an IP address: ')
+        ipchecker(x)
+        sys.exit(1)
     
-        try:
-            ipresponse = sp.check_output(command, stderr=sp.STDOUT, universal_newlines=True)
-            print("IP ran")
-        except sp.CalledProcessError:
-            print("IP failed to ping")
-
-
-        sys.exit(1)
-
-
-def ping(ip_):
-
-    if nspace.ip:
-
-        sys.exit(1)
-
-    # // Print program name //
-    print(__doc__)
-
-    # // Arguments from shell //
-    print(f"namespace: '{nspace}'")
-
-    # // Arguments from shell as dictionary //
-    print(f"dictionary: '{vars(nspace)}'")
-
-    # // Arguments from shell //
-    print("main() action: 'print from main()'")
-
-    # // call <OTHER_FUNCTION>() //
-    print("print from other()", other("OTHER"))
-
-
 # End main() function
 
 
