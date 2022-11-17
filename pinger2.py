@@ -46,18 +46,13 @@ def ipchecker(ip_):
         print(f'{ip_} - ERROR: is not a properly formatted address')
 
 # -------------------------------------------- #
-# //            other() Function            // #
-# -------------------------------------------- #
-
-# -------------------------------------------- #
 # //            main() Function             // #
 # -------------------------------------------- #
-
 
 def main(nspace):
     """main() function"""
 
-    list_A = ["Author", "Copyright", "License"]
+    list_A = ["Author", "Copyright", "Licence"]
     list_B = [__author__, __copyright__, __licence__]
 
     tl = len(max(list_A, key=len)) + 2
@@ -69,7 +64,6 @@ def main(nspace):
            print(f"{list_A[a] : <{tl}}: {list_B[a]}")
 
         print("\n")        
-        sys.exit(1)
 
     elif nspace.ip:
         print("\n")
@@ -79,10 +73,8 @@ def main(nspace):
     else:
         x = input(f'Enter an IP address: ')
         ipchecker(x)
-        sys.exit(1)
     
 # End main() function
-
 
 # ============================================ #
 # //                  Global                // #
@@ -107,7 +99,6 @@ parser.add_argument(
 parser.add_argument(
     '--license', help=argparse.SUPPRESS, required=False, action='store_true'
 )
-
 
 # // Call main function (Pick minimum version if necessary) //
 if __name__ == "__main__":
